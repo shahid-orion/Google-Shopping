@@ -170,7 +170,7 @@ const ProductPage = async ({ params: { id } }: Props) => {
                   ))}
                 </div>
 
-                <p>"{productData.content.reviews.top_review.text}"</p>
+                <p>&quot;{productData.content.reviews.top_review.text}&quot;</p>
               </div>
             )}
           </>
@@ -182,6 +182,31 @@ const ProductPage = async ({ params: { id } }: Props) => {
           </div>
         )}
       </section>
+
+      {productData.content.specifications && (
+        <section>
+          <hr className="my-10" />
+
+          <h3 className="font-bold text-2xl">Specifications</h3>
+
+          <div className="flex space-x-5 flex-wrap">
+            {productData.content.specifications.map((specification) => (
+              <div key={specification.section_title}>
+                <h4 className="font-bold my-2 text-xl">
+                  {specification.section_title}
+                </h4>
+
+                {specification.items.map((items) => (
+                  <div key={items.title} className="text-sm">
+                    <h5 className="font-bold">{items.title}</h5>
+                    <p>{items.value}</p>
+                  </div>
+                ))}
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   )
 }
